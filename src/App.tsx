@@ -39,21 +39,21 @@ const App: React.FC = () => (
     <IonReactRouter>
       <IonTabs>
         <IonRouterOutlet>
-          <Route path="/tab1" component={Tab1} exact={true} />
-          <Route path="/tab2" component={Tab2} exact={true} />
-          <Route path="/tab3" component={Tab3} />
-          <Route path="/" render={() => <Redirect to="/tab1" />} exact={true} />
+          <Route path="/order" component={Tab1} exact={true} />
+          <Route path="/find" component={Tab2} exact={true} />
+          <Route path="/account" component={Tab3} />
+          <Route path="/" render={() => <Redirect to="/order" />} exact={true} />
         </IonRouterOutlet>
         <IonTabBar slot="bottom">
-          <IonTabButton tab="tab1" href="/tab1">
+          <IonTabButton tab="tab1" href="/order">
             <IonIcon icon={pencil} />
             <IonLabel>Order Food</IonLabel>
           </IonTabButton>
-          <IonTabButton tab="tab2" href="/tab2">
+          <IonTabButton tab="tab2" href="/find">
             <IonIcon icon={map} />
             <IonLabel>Near Me</IonLabel>
           </IonTabButton>
-          <IonTabButton tab="tab3" href="/tab3">
+          <IonTabButton tab="tab3" href="/account">
             <IonIcon icon={person} />
             <IonLabel>Account</IonLabel>
           </IonTabButton>
