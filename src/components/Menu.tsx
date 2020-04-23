@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { IonCard, IonCardTitle, IonCardSubtitle, IonCardContent, IonInput, IonButton } from '@ionic/react';
+import { IonCard, IonCardTitle, IonCardSubtitle, IonCardContent,
+   IonInput, IonButton } from '@ionic/react';
+import MenuItem from './MenuItem';
 
 class Menu extends Component {
   state={
@@ -15,7 +17,7 @@ class Menu extends Component {
 
   TotalFoodCountMinus = () => {
     let Cartera = this.state.Cartera
-    Cartera -= 1
+    Cartera === 0 ? Cartera = 0: Cartera -= 1
     this.setState({Cartera: Cartera})
   }
 
@@ -23,27 +25,43 @@ class Menu extends Component {
     let Cartera = this.state.Cartera
     Cartera += 1
     this.setState({Cartera: Cartera})
+    this.TotalPrice();
+    this.ItemQuantity();
+  }
+
+  ItemQuantity = () => {
+    let Quant = this.state.Carta
+    console.log(Quant)
+  }
+
+  TotalPrice = () => {
+    let Cartera = this.state.Cartera
+    return(Cartera * 5)
   }
 
 render() { 
   return ( 
       <>
     {this.state.Carta.map(c => (
-      <IonCard key={c.id} style={{width:'25%', display:'inline-block'}}>
+      <IonCard key={c.id} style={{width:'40%', display:'inline-block'}}>
         <IonCardContent>
        <IonCardTitle>{c.name}</IonCardTitle> 
        <IonCardSubtitle>${c.cost}</IonCardSubtitle>
        
         <div style={{width:'100%', display:'flex'}}>
         <IonButton onClick={this.TotalFoodCountMinus}>-</IonButton>
-        <IonInput value={c.Cantidad}/>
         <IonButton onClick={this.TotalFoodCountAdd}>+</IonButton>
         </div>
+        <MenuItem
+        name={c.name}
+        cost={c.cost}
+        cantidad={c.Cantidad}
+        />
       </IonCardContent>
-     </IonCard>
+     </IonCard> 
    ))}
 
-   <h1>Total Items: {this.state.Cartera}</h1>
+    <h1>Total Items: {this.state.Cartera} - ${this.TotalPrice()}</h1>
       </>
   )}};
 
